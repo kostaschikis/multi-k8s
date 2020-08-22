@@ -1,6 +1,10 @@
 sudo: required
 services:
   - docker
+env: 
+  global:
+    - SHA=$(git rev-parse HEAD)
+    - CLOUDSDK_CORE_DISABLE_PROMPTS=1 # Cloud CLI dont display any prompts that require user input
 before_install:
   - curl https://sdk.cloud.google.com | bash > /dev/null; # install sdk & install locally to travis instance
   - source $HOME/google-cloud-sdk/path.bash.inc # Shell modification
